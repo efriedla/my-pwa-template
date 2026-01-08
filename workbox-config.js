@@ -4,4 +4,7 @@ module.exports = {
   swDest: "build/service-worker.js",
   clientsClaim: true,
   skipWaiting: true,
+  // This ensures all routes work with the service worker
+  navigateFallback: "/index.html",
+  navigateFallbackDenylist: [/^\/_/, /\/[^/?]+\.[^/]+$/],
 };

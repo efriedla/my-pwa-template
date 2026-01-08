@@ -12,6 +12,7 @@ clientsClaim();
 
 precacheAndRoute(self.__WB_MANIFEST);
 
+// Cache all navigation requests with a network-first strategy
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
   ({ request, url }: { request: Request; url: URL }) => {
@@ -29,6 +30,7 @@ registerRoute(
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
+// Cache images
 registerRoute(
   ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
   new StaleWhileRevalidate({
